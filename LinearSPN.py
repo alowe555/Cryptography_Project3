@@ -24,7 +24,7 @@ def approximation(input, output):
         # get single bit xnor of masked input and output, total increases by 1
         # if xnor returns 1
         total += xnor(input_masked, output_masked)
- 
+        
     #  NL(a,b) - 4.
     return total - SIZE/2
 
@@ -35,10 +35,7 @@ Calculates the trail bias given the inputs to all s-boxes in the trail
 @return totalBias - The bias of the trail taken by this input in a simple SPN
             This is calculated using the Piling-up Lemma
 '''
-
-
 # trail - [[0x6, 0x7], [0x6, 0x7], [0x7, 0x4], [0x7, 0x4], [0x4, 0x7]]
-#   approx  = 0         0            0            0           2
 def trailBias(sboxes):
     # To find the total bias of a trail, you multiply all the biases of each level together
     # You then multiply that number by 2^(number of s-boxes - 1)
@@ -74,14 +71,14 @@ def main():
     for row in sbox_input:
         sys.stdout.write(hex(row)[2:].rjust(5) + " | ")
         
-        for col in sbox_input:
+        for col in sbox_output:
             sys.stdout.write((str (approximation(row, col))).rjust(5) + " ")
 
         sys.stdout.write("\n")
 
     sys.stdout.write("\n--------------------------------------------------\n")
 
-    trail = [[0x6, 0x7], [0x6, 0x7], [0x7, 0x4], [0x7, 0x4], [0x4, 0x7]]
+    trail = [[0x6, 0x4], [0x6, 0x4], [0x6, 0x4], [0x4, 0x2]]
     sys.stdout.write('\nThe bias of the trail connecting P1, P2, P4, P5 and H1 is: ' + str(trailBias(trail)))
     sys.stdout.write("\n")
     
