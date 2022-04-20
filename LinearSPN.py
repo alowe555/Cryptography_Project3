@@ -26,7 +26,7 @@ def approximation(input, output):
         total += xnor(input_masked, output_masked)
  
     #  NL(a,b) - 4.
-    return total - (SIZE / 2)
+    return total - SIZE/2
 
 '''
 Calculates the trail bias given the inputs to all s-boxes in the trail
@@ -38,6 +38,7 @@ Calculates the trail bias given the inputs to all s-boxes in the trail
 
 
 # trail - [[0x6, 0x7], [0x6, 0x7], [0x7, 0x4], [0x7, 0x4], [0x4, 0x7]]
+#   approx  = 0         0            0            0           2
 def trailBias(sboxes):
     # To find the total bias of a trail, you multiply all the biases of each level together
     # You then multiply that number by 2^(number of s-boxes - 1)
@@ -45,10 +46,10 @@ def trailBias(sboxes):
     # The simple SPN has 3 s-boxes
     for sbox in sboxes:
         # Take each input and find its linear approximation
-        approx = approximation(sbox[0], sbox[1]) / (2 ** SIZE)
+        approx = approximation(sbox[0], sbox[1]) /SIZE
         totalBias *= approx
             
-    totalBias *= 2 ** (len(sboxes) - 1)
+    totalBias *= 2 ** (SIZE - 1)
     return totalBias
 
 
@@ -63,15 +64,18 @@ def xnor(a , b):
 def main():
 
     print("      | ", end='')
-    for i in range(SIZE):
+    for i in sbox_output:
         sys.stdout.write(hex(i)[2:].rjust(5) + " ")
+    
+    sys.stdout.write("\n")  
+    sys.stdout.write("      --------------------------------------------------") 
     sys.stdout.write("\n")  
         
-    for row in sbox_output:
+    for row in sbox_input:
         sys.stdout.write(hex(row)[2:].rjust(5) + " | ")
         
         for col in sbox_input:
-            sys.stdout.write((str (approximation(col, row))).rjust(5) + " ")
+            sys.stdout.write((str (approximation(row, col))).rjust(5) + " ")
 
         sys.stdout.write("\n")
 
@@ -79,6 +83,7 @@ def main():
 
     trail = [[0x6, 0x7], [0x6, 0x7], [0x7, 0x4], [0x7, 0x4], [0x4, 0x7]]
     sys.stdout.write('\nThe bias of the trail connecting P1, P2, P4, P5 and H1 is: ' + str(trailBias(trail)))
+    sys.stdout.write("\n")
     
 if __name__ == "__main__":
     main()
