@@ -1,0 +1,23 @@
+1)    |     6     5     1     0     3     2     7     4 
+      -------------------------------------------------
+    0 |   0.0   0.0   0.0   4.0   0.0   0.0   0.0   0.0 
+    1 |   2.0  -2.0  -2.0   0.0   0.0  -2.0   0.0   0.0 
+    2 |  -2.0   0.0   0.0   0.0  -2.0  -2.0   2.0   0.0 
+    3 |   0.0  -2.0   2.0   0.0   2.0   0.0   2.0   0.0 
+    4 |   2.0   0.0   0.0   0.0  -2.0   2.0   2.0   0.0 
+    5 |   0.0  -2.0   2.0   0.0  -2.0   0.0  -2.0   0.0 
+    6 |   0.0   0.0   0.0   0.0   0.0   0.0   0.0  -4.0 
+    7 |   2.0   2.0   2.0   0.0   0.0  -2.0   0.0   0.0 
+      -------------------------------------------------
+2) *attached file*
+3) The bias of the trail connecting P1, P2, P4, P5 and H1 is: -0.25
+4) the key 000 gives us a count of 6
+the key 001 gives us a count of 2
+the key 010 gives us a count of 0
+the key 011 gives us a count of 4
+the key 100 gives us a count of 4
+the key 101 gives us a count of 2
+the key 110 gives us a count of 2
+the key 111 gives us a count of 4
+k4 bit1 = 0 / k4 bit3 = 0
+5) we can't figure out what our second bit of k4 is because our count values for P1⊕P2⊕P4⊕P5⊕H1 doesn't have a clear correlation to a k2 value.
