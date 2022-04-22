@@ -3,6 +3,7 @@ import sys
 
 sbox_input = [0x0, 0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7]
 sbox_output = [0x6, 0x5, 0x1, 0x0, 0x3, 0x2, 0x7, 0x4]
+#sbox_output = [0x0, 0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7]
 SIZE = len(sbox_input)  # 8
 inputs = [39, 7, 12, 24, 8, 26]
 outputs = [36, 50, 57, 29, 13, 41]
@@ -92,7 +93,7 @@ def xnor(a , b):
 def main():
 
     print("      | ", end='')
-    for i in sbox_output:
+    for i in range(8):
         sys.stdout.write(hex(i)[2:].rjust(5) + " ")
     
     sys.stdout.write("\n")  
@@ -102,7 +103,7 @@ def main():
     for row in sbox_input:
         sys.stdout.write(hex(row)[2:].rjust(5) + " | ")
         
-        for col in sbox_output:
+        for col in range(8):
             sys.stdout.write((str (approximation(row, col))).rjust(5) + " ")
 
         sys.stdout.write("\n")
